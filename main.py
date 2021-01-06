@@ -181,16 +181,15 @@ print(now3)
 
 print("Dodanie do tabeli nieposotrowanych liczb losowych")
 arr.extend(random.randint(-1000000000, 1000000000) for j in range(50000))
-arr2 = arr
+arr1 = arr
 arr3 = arr
 print("---insertion sort---")
-insertionSort1(arr2)
+insertionSort2(arr1)
 
 
 print("---merge sort---")
-print("sortowanie on najmniejszego ")
 now1 = datetime.now()
-mergeSort1(arr3)
+mergeSort2(arr3)
 now2 = datetime.now()
 now3 = now2 - now1
 print("zajęło to:")
