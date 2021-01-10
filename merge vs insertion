@@ -1,0 +1,79 @@
+import random
+from datetime import datetime
+
+
+def insertionSort(arr):
+    now1 = datetime.now()
+    for i in range(1, len(arr)):
+
+        key = arr[i]
+
+        j = i - 1
+        while j >= 0 and key < arr[j]:
+            arr[j + 1] = arr[j]
+            j -= 1
+        arr[j + 1] = key
+
+    now2 = datetime.now()
+    print(now2 - now1)
+
+
+def mergeSort1(arr):
+    if len(arr) > 1:
+
+        mid = len(arr) // 2
+
+        L = arr[:mid]
+
+        R = arr[mid:]
+
+        mergeSort1(L)
+
+        mergeSort1(R)
+
+        i = j = k = 0
+
+        while i < len(L) and j < len(R):
+            if L[i] < R[j]:
+                arr[k] = L[i]
+                i += 1
+            else:
+                arr[k] = R[j]
+                j += 1
+            k += 1
+
+        # Checking if any element was left
+        while i < len(L):
+            arr[k] = L[i]
+            i += 1
+            k += 1
+
+        while j < len(R):
+            arr[k] = R[j]
+            j += 1
+            k += 1
+
+
+print("dodawanie liczb do tablicy")
+arr1 = []  # dla merge
+arr2 =[]  # dla insertion
+arr3 = [random.randint(-1000000000, 1000000000) for i in range(50000)]  # baza standardowa
+mergeSort1(arr3)
+arr1.extend(arr3)
+arr2.extend(arr3)
+x = 1000
+for p in range(50000):
+    print(x)
+    arr4 = [random.randint(-1000000000, 1000000000) for j in range(x)]
+    arr1.extend(arr4)
+    arr2.extend(arr4)
+    print("merge")
+    now1 = datetime.now()
+    mergeSort1(arr1)
+    now2 = datetime.now()
+    print(now2 - now1)
+    print("insertion")
+    insertionSort(arr2)
+    arr1 = list(arr3)
+    arr2 = list(arr3)
+    x = x * 2
